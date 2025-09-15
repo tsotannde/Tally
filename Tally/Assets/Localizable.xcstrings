@@ -1,7 +1,29 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-
+    "app_name" : {
+      "comment" : "name of application",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tally"
+          }
+        }
+      }
+    },
+    "login_with_email_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Email"
+          }
+        }
+      }
+    }
   },
   "version" : "1.1"
 }
