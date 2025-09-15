@@ -9,6 +9,7 @@ import UIKit
 import SimplifiedAuthKit
 
 
+
 class InitialLoginViewController: UIViewController
 {
     override func viewDidLoad()
@@ -55,17 +56,26 @@ extension InitialLoginViewController
         return button
     }
     
-    private func makeAppleButton() -> ASAuthorizationAppleIDButton {
-        return SimplifiedAuthKit.makeAppleButton(from: self) { result in
-            switch result {
-            case .success(let _):
-                print("✅ User signed in: ")
-                // Navigate to home
-            case .failure(let error):
-                print("❌ Sign in failed: ")
-            }
+    private func makeAppleButton() -> ASAuthorizationAppleIDButton
+    {
+        let applebutton = SimplifiedAuthKit.styleAppleButton()
+        applebutton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
+        return applebutton
+            
         }
-    }
+    
+//    private func makeAppleButton() -> ASAuthorizationAppleIDButton {
+//        return SimplifiedAuthKit.makeAppleButton(from: self) { result in
+//            switch result
+//            {
+//            case .success(let user):
+//                print("Sign in Successful")
+//                NavigationManager.shared.navigate(to: HomeViewController(),on: self.navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
+//            case .failure(let error):
+//                print("❌ Sign in failed: \(error.localizedDescription)")
+//            }
+//        }
+//    }
     
     private func constructUserInterface()
     {
@@ -123,8 +133,8 @@ extension InitialLoginViewController
 //        AuthenticationManager.shared.startGoogleSignIn(from: self)
 //    }
     
-//    @objc func handleAppleSignIn()
-//    {
-//        AuthenticationManager.shared.startAppleSignIn(from: self)
-//    }
+    @objc func handleAppleSignIn()
+    {
+        SimplifiedAuthKit.st
+    }
 }
