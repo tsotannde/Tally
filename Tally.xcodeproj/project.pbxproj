@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B9D36C32E77B0D2009A0201 /* SimplifiedAuthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9D36C22E77B0D2009A0201 /* SimplifiedAuthKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8B9D36992E77AFCF009A0201 /* Tally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9D36C32E77B0D2009A0201 /* SimplifiedAuthKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Tally;
 			packageProductDependencies = (
+				8B9D36C22E77B0D2009A0201 /* SimplifiedAuthKit */,
 			);
 			productName = Tally;
 			productReference = 8B9D36992E77AFCF009A0201 /* Tally.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 8B9D36902E77AFCF009A0201;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8B9D36C12E77B0D2009A0201 /* XCRemoteSwiftPackageReference "SimplifiedAuthKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B9D369A2E77AFCF009A0201 /* Products */;
 			projectDirPath = "";
@@ -153,6 +162,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -185,6 +195,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -345,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B9D36C12E77B0D2009A0201 /* XCRemoteSwiftPackageReference "SimplifiedAuthKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tsotannde/SimplifiedAuthKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B9D36C22E77B0D2009A0201 /* SimplifiedAuthKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B9D36C12E77B0D2009A0201 /* XCRemoteSwiftPackageReference "SimplifiedAuthKit" */;
+			productName = SimplifiedAuthKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B9D36912E77AFCF009A0201 /* Project object */;
 }
