@@ -8,11 +8,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>REVERSED_CLIENT_ID</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.599547621596-s4kcmss8nchncrmbplcdpeqqpgpcavfv</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>UIAppFonts</key>
