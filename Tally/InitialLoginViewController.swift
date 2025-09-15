@@ -16,6 +16,7 @@ class InitialLoginViewController: UIViewController
     {
         super.viewDidLoad()
         print("InitalLogin View Controller")
+       
         constructUserInterface()
     }
 }
@@ -56,26 +57,26 @@ extension InitialLoginViewController
         return button
     }
     
-    private func makeAppleButton() -> ASAuthorizationAppleIDButton
-    {
-        let applebutton = SimplifiedAuthKit.styleAppleButton()
-        applebutton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
-        return applebutton
-            
-        }
-    
-//    private func makeAppleButton() -> ASAuthorizationAppleIDButton {
-//        return SimplifiedAuthKit.makeAppleButton(from: self) { result in
-//            switch result
-//            {
-//            case .success(let user):
-//                print("Sign in Successful")
-//                NavigationManager.shared.navigate(to: HomeViewController(),on: self.navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
-//            case .failure(let error):
-//                print("❌ Sign in failed: \(error.localizedDescription)")
-//            }
+//    private func makeAppleButton() -> ASAuthorizationAppleIDButton
+//    {
+//        let applebutton = SimplifiedAuthKit.styleAppleButton()
+//        applebutton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
+//        return applebutton
+//            
 //        }
-//    }
+    
+    private func makeAppleButton() -> ASAuthorizationAppleIDButton {
+        return SimplifiedAuthKit.makeAppleButton(from: self) { result in
+            switch result
+            {
+            case .success(let user):
+                print("Sign in Successful")
+                NavigationManager.shared.navigate(to: HomeViewController(),on: self.navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
+            case .failure(let error):
+                print("❌ Sign in failed: \(error.localizedDescription)")
+            }
+        }
+    }
     
     private func constructUserInterface()
     {
@@ -133,8 +134,22 @@ extension InitialLoginViewController
 //        AuthenticationManager.shared.startGoogleSignIn(from: self)
 //    }
     
-    @objc func handleAppleSignIn()
-    {
-        SimplifiedAuthKit.st
+    @objc func handleAppleSignIn() {
+//        SimplifiedAuthKit.signInWithApple(from: self) { result in
+//            switch result {
+//            case .success(let user):
+//                print("✅ Signed in as \(user.uid)")
+//                // Navigate to Home
+//                NavigationManager.shared.navigate(
+//                    to: HomeViewController(),
+//                    on: self.navigationController,
+//                    clearStack: true,
+//                    animation: DesignSystem.Animations.slideLeftTransition
+//                )
+//            case .failure(let error):
+//                print("❌ Sign in failed: \(error.localizedDescription)")
+//                // Optionally show an alert
+//            }
+//        }
     }
 }
