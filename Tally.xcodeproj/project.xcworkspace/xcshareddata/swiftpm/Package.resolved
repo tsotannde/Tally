@@ -1,5 +1,5 @@
 {
-  "originHash" : "73cd16069f5d1f680af4a542f8eb0fd98c6530400c1fc67b84e2310b74dd659c",
+  "originHash" : "473bff29a4782af36c2ca79cfc8d6e7c9252f75c89c7a043bf388e1d82f35fc6",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -152,15 +152,6 @@
       "state" : {
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
-      }
-    },
-    {
-      "identity" : "simplifiedauthkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tsotannde/SimplifiedAuthKit",
-      "state" : {
-        "branch" : "main",
-        "revision" : "30bacef6a7c4849f97500829dd532d75483221e9"
       }
     },
     {
