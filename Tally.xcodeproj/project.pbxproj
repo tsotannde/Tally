@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B9D36C32E77B0D2009A0201 /* SimplifiedAuthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9D36C22E77B0D2009A0201 /* SimplifiedAuthKit */; };
+		8B9D37112E77B66C009A0201 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9D37102E77B66C009A0201 /* Hero */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9D37112E77B66C009A0201 /* Hero in Frameworks */,
 				8B9D36C32E77B0D2009A0201 /* SimplifiedAuthKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = Tally;
 			packageProductDependencies = (
 				8B9D36C22E77B0D2009A0201 /* SimplifiedAuthKit */,
+				8B9D37102E77B66C009A0201 /* Hero */,
 			);
 			productName = Tally;
 			productReference = 8B9D36992E77AFCF009A0201 /* Tally.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8B9D36C12E77B0D2009A0201 /* XCRemoteSwiftPackageReference "SimplifiedAuthKit" */,
+				8B9D370F2E77B66C009A0201 /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B9D369A2E77AFCF009A0201 /* Products */;
@@ -368,6 +372,14 @@
 				kind = branch;
 			};
 		};
+		8B9D370F2E77B66C009A0201 /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -375,6 +387,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B9D36C12E77B0D2009A0201 /* XCRemoteSwiftPackageReference "SimplifiedAuthKit" */;
 			productName = SimplifiedAuthKit;
+		};
+		8B9D37102E77B66C009A0201 /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B9D370F2E77B66C009A0201 /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
