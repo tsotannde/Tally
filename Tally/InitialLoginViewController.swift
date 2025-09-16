@@ -69,19 +69,16 @@ extension InitialLoginViewController
     }
     
     
-    private func makeGoogleButton() -> UIButton
+    private func makeGoogleButton() -> UIView
     {
-        let googleButton = SimplifiedAuthKit.makeGoogleButton()
+        let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google, style: .google(true))
         googleButton.addCoolTapFeature()
        //googleButton.setTitleColor(.red, for: .normal)
         return googleButton
     }
-    private func makeAppleButton() -> ASAuthorizationAppleIDButton
+    private func makeAppleButton() -> UIView
     {
-        let applebutton = SimplifiedAuthKit.styleAppleButton()
-        applebutton.addCoolTapFeature()
-        applebutton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
-        return applebutton
+        return SimplifiedAuthKit.makeAuthButton(for: .apple, style: .apple(.black))
     }
     
    
@@ -159,7 +156,8 @@ extension InitialLoginViewController
     
     @objc func handleGoogleSignIn()
     {
-        SimplifiedAuthKit.signInWithGoogle(from: self) { result in
+        SimplifiedAuthKit.signIn(with: .google, from: self)
+        { result in
             switch result {
             case .success(let user):
                 print("✅ Signed in as \(user.email)")
@@ -175,6 +173,8 @@ extension InitialLoginViewController
                 // Optionally show an alert
             }
         }
+       
+       
     }
     
     @objc func handleAppleSignIn() {
