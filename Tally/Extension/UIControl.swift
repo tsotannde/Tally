@@ -4,7 +4,7 @@
 //
 //  Created by Developer on 9/15/25.
 //
-
+ import UIKit
 
 // Extension to add tap animation to any UIControl (covers UIButton and ASAuthorizationAppleIDButton)
 extension UIControl {

@@ -19,6 +19,8 @@ enum DesignSystem
         static let textPrimary = UIColor(named: "Text Primary")!
         static let textSecondary = UIColor(named: "Text Secondary")!
         static let background = UIColor(named: "Background")!
+        static let white = UIColor(named: "White")!
+        
     }
     
     enum AppFonts

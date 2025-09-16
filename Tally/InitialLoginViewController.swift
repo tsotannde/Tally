@@ -28,7 +28,7 @@ extension InitialLoginViewController
     {
         let button = UIButton(type: .system)
         button.setTitle(DesignSystem.L10n.skipKey, for: .normal)
-        button.setTitleColor(DesignSystem.AppColors.textSecondary, for: .normal)
+        button.setTitleColor(DesignSystem.AppColors.background, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         button.clipsToBounds = true
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
@@ -61,37 +61,19 @@ extension InitialLoginViewController
         config.background.strokeWidth = DesignSystem.Styling.LoginUI.borderWidth
         
         let button = UIButton(configuration: config)
+        button.addCoolTapFeature()
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleEmailSignIn), for: .touchUpInside)
         
         return button
     }
     
-//    private func makeGoogleButton() -> UIButton
-//    {
-//        var config = UIButton.Configuration.filled()
-//        config.baseBackgroundColor = DesignSystem.AppColors.background
-//        config.baseForegroundColor = DesignSystem.AppColors.textPrimary
-//        config.title = DesignSystem.L10n.signInWithGoogleKey
-//        config.image = DesignSystem.AppImages.googleImage?.withRenderingMode(.alwaysOriginal)
-//       
-//        config.imagePadding = DesignSystem.Styling.LoginUI.imagePadding
-//        config.cornerStyle = DesignSystem.Styling.LoginUI.buttonCornerStyle
-//        
-//        config.background.strokeColor =  DesignSystem.AppColors.background
-//        config.background.strokeWidth = DesignSystem.Styling.LoginUI.borderWidth
-//        
-//        let button = UIButton(configuration: config)
-//        button.clipsToBounds = true
-//        button.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
-//        
-//        return button
-//    }
     
     private func makeGoogleButton() -> UIButton
     {
         let googleButton = SimplifiedAuthKit.makeGoogleButton()
         googleButton.addCoolTapFeature()
+       //googleButton.setTitleColor(.red, for: .normal)
         return googleButton
     }
     private func makeAppleButton() -> ASAuthorizationAppleIDButton
@@ -196,7 +178,7 @@ extension InitialLoginViewController
     }
     
     @objc func handleAppleSignIn() {
-        SimplifiedAuthKit.signInWithApple(from: self) { result in
+        SimplifiedAuthKit.signIn(with: .apple, from: self) { result in
             switch result {
             case .success(let user):
                 print("✅ Signed in as \(user.email)")
