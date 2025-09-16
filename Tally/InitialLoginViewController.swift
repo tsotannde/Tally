@@ -24,6 +24,19 @@ class InitialLoginViewController: UIViewController
 //MARK: - Create UserInterface
 extension InitialLoginViewController
 {
+    private func makeSkipButton() -> UIButton
+    {
+        let button = UIButton(type: .system)
+        button.setTitle(DesignSystem.L10n.skipKey, for: .normal)
+        button.setTitleColor(DesignSystem.AppColors.textSecondary, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        button.clipsToBounds = true
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        
+        button.addTarget(self, action: #selector(handleSkip), for: .touchUpInside)
+        return button
+    }
+    
     private func makeTallyLabel() -> UILabel
     {
         let tallyLabel = UILabel()
@@ -54,33 +67,42 @@ extension InitialLoginViewController
         return button
     }
     
+//    private func makeGoogleButton() -> UIButton
+//    {
+//        var config = UIButton.Configuration.filled()
+//        config.baseBackgroundColor = DesignSystem.AppColors.background
+//        config.baseForegroundColor = DesignSystem.AppColors.textPrimary
+//        config.title = DesignSystem.L10n.signInWithGoogleKey
+//        config.image = DesignSystem.AppImages.googleImage?.withRenderingMode(.alwaysOriginal)
+//       
+//        config.imagePadding = DesignSystem.Styling.LoginUI.imagePadding
+//        config.cornerStyle = DesignSystem.Styling.LoginUI.buttonCornerStyle
+//        
+//        config.background.strokeColor =  DesignSystem.AppColors.background
+//        config.background.strokeWidth = DesignSystem.Styling.LoginUI.borderWidth
+//        
+//        let button = UIButton(configuration: config)
+//        button.clipsToBounds = true
+//        button.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
+//        
+//        return button
+//    }
+    
     private func makeGoogleButton() -> UIButton
     {
-        var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = DesignSystem.AppColors.background
-        config.baseForegroundColor = DesignSystem.AppColors.textPrimary
-        config.title = DesignSystem.L10n.signInWithGoogleKey
-        config.image = DesignSystem.AppImages.googleImage?.withRenderingMode(.alwaysOriginal)
-       
-        config.imagePadding = DesignSystem.Styling.LoginUI.imagePadding
-        config.cornerStyle = DesignSystem.Styling.LoginUI.buttonCornerStyle
-        
-        config.background.strokeColor =  DesignSystem.AppColors.background
-        config.background.strokeWidth = DesignSystem.Styling.LoginUI.borderWidth
-        
-        let button = UIButton(configuration: config)
-        button.clipsToBounds = true
-        button.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
-        
-        return button
+        let googleButton = SimplifiedAuthKit.makeGoogleButton()
+        googleButton.addCoolTapFeature()
+        return googleButton
     }
-    
     private func makeAppleButton() -> ASAuthorizationAppleIDButton
     {
         let applebutton = SimplifiedAuthKit.styleAppleButton()
+        applebutton.addCoolTapFeature()
         applebutton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
         return applebutton
     }
+    
+   
     
     private func constructUserInterface()
     {
@@ -119,6 +141,15 @@ extension InitialLoginViewController
             tallyLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Styling.LoginUI.sidePadding),
             tallyLabel.bottomAnchor.constraint(equalTo: buttonStack.topAnchor, constant: -DesignSystem.Styling.LoginUI.sidePadding)
         ])
+        
+        let skipButton = makeSkipButton()
+        view.addSubview(skipButton)
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -17)
+        ])
     }
     
    
@@ -128,6 +159,17 @@ extension InitialLoginViewController
 //MARK: - User Authentificaton
 extension InitialLoginViewController
 {
+    
+    @objc func handleSkip() {
+        print("➡️ User skipped sign-in")
+        NavigationManager.shared.navigate(
+            to: HomeViewController(),
+            on: navigationController,
+            clearStack: true,
+            animation: DesignSystem.Animations.slideLeftTransition
+        )
+    }
+    
     @objc func handleEmailSignIn()
     {
         NavigationManager.shared.navigate(to: EmailLoginViewController(), on: navigationController, clearStack: false, animation: DesignSystem.Animations.slideLeftTransition)
@@ -138,7 +180,7 @@ extension InitialLoginViewController
         SimplifiedAuthKit.signInWithGoogle(from: self) { result in
             switch result {
             case .success(let user):
-                print("✅ Signed in as \(user.uid)")
+                print("✅ Signed in as \(user.email)")
                 // Navigate to Home
                 NavigationManager.shared.navigate(
                     to: HomeViewController(),
@@ -157,7 +199,7 @@ extension InitialLoginViewController
         SimplifiedAuthKit.signInWithApple(from: self) { result in
             switch result {
             case .success(let user):
-                print("✅ Signed in as \(user.uid)")
+                print("✅ Signed in as \(user.email)")
                 // Navigate to Home
                 NavigationManager.shared.navigate(
                     to: HomeViewController(),
@@ -172,3 +214,4 @@ extension InitialLoginViewController
         }
     }
 }
+

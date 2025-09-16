@@ -77,6 +77,8 @@ enum DesignSystem
         static let appNameKey = String(localized:  "app_name")
         static let loginWithEmailKey = String(localized: "login_with_email_text")
         static let signInWithGoogleKey =  String(localized:  "sign_in_google_text")
+        static let skipKey = String(localized: "skip_text")
+       
     }
     
 }
