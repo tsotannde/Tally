@@ -9,7 +9,6 @@ import UIKit
 import Hero
 import SimplifiedAuthKit
 
-
 final class SplashViewController: UIViewController
 {
     enum LaunchDestination
@@ -67,6 +66,7 @@ extension SplashViewController
             guard let self = self else { return }
             
             let destination: LaunchDestination = SimplifiedAuthKit.isSignedIn() ? .home : .login
+            
             
             switch destination
             {

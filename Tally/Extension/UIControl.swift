@@ -1,29 +1,26 @@
 //
 //  UIControl.swift
-//  
+//
 //
 //  Created by Adebayo Sotannde on 9/15/25.
 //
  import UIKit
 
-// Extension to add tap animation to any UIControl (covers UIButton)
-extension UIControl {
-    func addCoolTapFeature(duration: TimeInterval = 0.2, scaleFactor: CGFloat = 0.95) {
+//  Adds a press/tap animation to any UIControl (e.g., UIButton).
+//  Usage: myButton.addCoolTapFeature()
+extension UIControl
+{
+    func addPressAnimation(duration: TimeInterval = 0.2, scaleFactor: CGFloat = 0.95)
+    {
         let originalTransform = self.transform
         
         self.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            UIView.animate(withDuration: duration, animations: {
-                self.transform = originalTransform.scaledBy(x: scaleFactor, y: scaleFactor)
-            })
-        }, for: .touchDown)
+            UIView.animate(withDuration: duration, animations:{self.transform = originalTransform.scaledBy(x: scaleFactor, y: scaleFactor)})}, for: .touchDown)
         
         self.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
-            UIView.animate(withDuration: duration, animations: {
-                self.transform = originalTransform
-            })
-        }, for: [.touchUpInside, .touchUpOutside, .touchCancel])
+            UIView.animate(withDuration: duration, animations: {self.transform = originalTransform})}, for: [.touchUpInside, .touchUpOutside, .touchCancel])
     }
 }
 

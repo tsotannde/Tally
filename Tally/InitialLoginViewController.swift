@@ -13,8 +13,6 @@ class InitialLoginViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        print("InitalLogin View Controller")
-       
         constructUserInterface()
     }
 }
@@ -59,7 +57,7 @@ extension InitialLoginViewController
         config.background.strokeWidth = DesignSystem.Styling.LoginUI.borderWidth
         
         let button = UIButton(configuration: config)
-        button.addCoolTapFeature()
+        button.addPressAnimation()
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleEmailSignIn), for: .touchUpInside)
         
@@ -70,7 +68,7 @@ extension InitialLoginViewController
     private func makeGoogleButton() -> UIButton
     {
         let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google, color: .white, adaptive: true)
-        googleButton.addCoolTapFeature()
+        googleButton.addPressAnimation()
         googleButton.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
         return googleButton
     }
@@ -78,7 +76,7 @@ extension InitialLoginViewController
     private func makeAppleButton() -> UIButton
     {
         let appleButton = SimplifiedAuthKit.makeAuthButton(for: .apple, color: .black, adaptive: false)
-        appleButton.addCoolTapFeature()
+        appleButton.addPressAnimation()
         
         appleButton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
         return appleButton
