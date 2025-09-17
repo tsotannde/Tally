@@ -69,19 +69,23 @@ extension InitialLoginViewController
     }
     
     
-    private func makeGoogleButton() -> UIView
+    private func makeGoogleButton() -> UIButton
     {
-        let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google, style: .google(true))
+        let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google, color: .white, adaptive: true)
         googleButton.addCoolTapFeature()
-       //googleButton.setTitleColor(.red, for: .normal)
+        googleButton.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
         return googleButton
     }
-    private func makeAppleButton() -> UIView
-    {
-        return SimplifiedAuthKit.makeAuthButton(for: .apple, style: .apple(.black))
-    }
     
-   
+    private func makeAppleButton() -> UIButton
+    {
+        let appleButton = SimplifiedAuthKit.makeAuthButton(for: .apple, color: .black, adaptive: false)
+        appleButton.addCoolTapFeature()
+        
+        appleButton.addTarget(self, action: #selector(handleAppleSignIn), for: .touchUpInside)
+        return appleButton
+        
+    }
     
     private func constructUserInterface()
     {
@@ -97,8 +101,9 @@ extension InitialLoginViewController
        let googleButton = makeGoogleButton()
         let appleButton = makeAppleButton()
         
+        let realAppleButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
         // Buttons stack
-        let buttonStack = UIStackView(arrangedSubviews: [emailButton, googleButton, appleButton])
+        let buttonStack = UIStackView(arrangedSubviews: [emailButton, googleButton, appleButton, realAppleButton])
         buttonStack.axis = .vertical
         buttonStack.spacing = DesignSystem.Styling.LoginUI.verticalSpacing
         buttonStack.alignment = .fill
@@ -114,6 +119,7 @@ extension InitialLoginViewController
             emailButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight),
             googleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight),
             appleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight),
+            realAppleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight),
             
             tallyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DesignSystem.Styling.LoginUI.sidePadding),
             tallyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DesignSystem.Styling.LoginUI.sidePadding),

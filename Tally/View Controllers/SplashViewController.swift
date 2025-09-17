@@ -21,13 +21,9 @@ final class SplashViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        print("Inside the Splash Screen")
         setupUI()
         navigateToDestination()
     }
-    
-    
-       
     
     override func viewWillAppear(_ animated: Bool)
     {

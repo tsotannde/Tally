@@ -34,4 +34,8 @@ class NavigationManager
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+    
+    func popViewController(animated: Bool = true, on navigationController: UINavigationController?) {
+        navigationController?.popViewController(animated: animated)
+    }
 }
