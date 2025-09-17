@@ -7,11 +7,12 @@
 
 import UIKit
 import Hero
-import AuthenticationServices
+import SimplifiedAuthKit
 
-enum DesignSystem
+enum DesignSystem //Design System
 {
-    enum AppColors {
+    enum AppColors 
+    {
         static let primary = UIColor(named: "Primary")!
         static let secondary = UIColor(named: "Secondary")!
         static let error = UIColor(named: "Error")!
@@ -28,9 +29,12 @@ enum DesignSystem
         static let body = UIFont.systemFont(ofSize: 14)
         static let title = UIFont.boldSystemFont(ofSize: 24)
         static let loginPageFont: CGFloat = 70
-        static func custom(_ name: String, size: CGFloat) -> UIFont {
+        
+        static func custom(_ name: String, size: CGFloat) -> UIFont 
+        {
             UIFont(name: name, size: size) ?? .systemFont(ofSize: size)
         }
+        
         enum FontName
         {
             static let AgbalumoRegular = "Agbalumo-Regular"
@@ -52,6 +56,7 @@ enum DesignSystem
             static let borderWidth: CGFloat = 1
         }
     }
+    
     enum AppImages
     {
         static let tallyTransparentImage = UIImage(named: "Tally Transparent")
@@ -66,7 +71,8 @@ enum DesignSystem
         
     }
     
-    enum Animations {
+    enum Animations 
+    {
         static let splashToHome: HeroDefaultAnimationType = .zoomOut
         static let emailTransition: HeroDefaultAnimationType = .slide(direction: .left)
         static let loginTransition: HeroDefaultAnimationType = .slide(direction: .up)
@@ -82,5 +88,4 @@ enum DesignSystem
         static let skipKey = String(localized: "skip_text")
        
     }
-    
 }

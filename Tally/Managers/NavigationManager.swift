@@ -13,24 +13,24 @@ class NavigationManager
     
     private init() {}
     
-    func toggleNavigationBar(on navigationController: UINavigationController?, animated: Bool = false, shouldShow: Bool = true) {
+    func toggleNavigationBar(on navigationController: UINavigationController?, animated: Bool = false, shouldShow: Bool = true) 
+    {
         navigationController?.setNavigationBarHidden(!shouldShow, animated: animated)
     }
     
-    func navigate(
-        to viewController: UIViewController,
-        on navigationController: UINavigationController?,
-        clearStack: Bool = true,
-        animation: HeroDefaultAnimationType? = nil
-    ) {
-        if let animation = animation {
+    func navigate(to viewController: UIViewController,on navigationController: UINavigationController?,clearStack: Bool = true,animation: HeroDefaultAnimationType? = nil)
+    {
+        if let animation = animation 
+        {
             navigationController?.hero.isEnabled = true
             navigationController?.hero.navigationAnimationType = animation
         }
         
-        if clearStack {
+        if clearStack 
+        {
             navigationController?.setViewControllers([viewController], animated: true)
-        } else {
+        } else 
+        {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

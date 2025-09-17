@@ -8,8 +8,6 @@
 import UIKit
 import SimplifiedAuthKit
 
-
-
 class InitialLoginViewController: UIViewController
 {
     override func viewDidLoad()
