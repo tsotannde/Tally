@@ -1,103 +1,25 @@
 //
-//  EmailLoginViewController.swift
-//  
+//  Email+UI.swift
+//  Tally
 //
-//  Created by Developer on 9/15/25.
+//  Created by Developer on 9/17/25.
 //
 
-import UIKit
-import Hero
-import SimplifiedAuthKit
-
-final class EmailLoginViewController: UIViewController
-{
-    //UI Components
-    private let titleLabel = makeTitleLabel()
-    private let appleButton = makeAppleButton()
-    private let googleButton = makeGoogleButton()
-    private let orLabel = makeOrLabel()
-    private var emailCheckmarkView: UIImageView?
-    private let emailTextField = makeEmailField()
-    private let emailErrorLabel = makeEmailErrorLabel()
-    private var passwordCheckmarkView: UIImageView?
-    private let passwordTextField = makePasswordField()
-    private let passwordErrorLabel = makePasswordErrorLabel()
-    private let forgotButton = makeForgotPasswordButton()
-    private let loginButton = makeLoginButton()
-    private let bottomLablel = makeBottomLabel()
-    private let signUpButton = makeSignUpButton()
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        dismissKeyboardGesture() // Dismiss keyboard when tapping anywhere on the main view
-        setupUI() //Construct the User Interface
-    }
-
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        replaceNavigationControllerBackButton() // Use custom back button instead of the default one
-        NavigationManager.shared.toggleNavigationBar(on: self.navigationController,animated: false, shouldShow: true)
-        configureSwipeBackGesture()
-    }
-}
-
-//MARK: - Naviagation Controller
-extension EmailLoginViewController
-{
-    // Re-enable swipe-right to dismiss (Hero disables the default pop gesture)
-    private func configureSwipeBackGesture()
-    {
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    }
-  
-    // Replace the system back button with a custom one that triggers  Hero slide-right animation
-    private func replaceNavigationControllerBackButton()
-    {
-        navigationItem.hidesBackButton = true //Hides the Back Button created by the Navigation Controller
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),style: .plain,target: self,action: #selector(customBackPressed))
-    }
-    
-    // Handles custom back button press by popping the current view controller with a Hero slide-right animation via the NavigationManager.dismiss() function
-    @objc private func customBackPressed()
-    {
-        NavigationManager.shared.dismiss(on: navigationController, animation: .slide(direction: .right), animated: true)
-    }
-}
-
-//MARK: - Keyboard Dismissal
-extension EmailLoginViewController
-{
-    //Recognizes when the user taps the screen
-    func dismissKeyboardGesture()
-    {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    //Dismiss the keyboard by actually Ending editing
-    @objc private func dismissKeyboard()
-    {
-        view.endEditing(true)
-    }
-}
 
 //MARK: - UI Component Builders
 extension EmailLoginViewController
 {
-    public static func makeTitleLabel() -> UILabel
+    internal  static func makeTitleLabel() -> UILabel
     {
         let label = UILabel()
         label.text = DesignSystem.L10n.loginTextKey
+        label.textColor = DesignSystem.AppColors.textPrimaryColor
         label.font = .boldSystemFont(ofSize: 30)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
-    private  static func makeAppleButton() -> UIButton
+    internal  static func makeAppleButton() -> UIButton
     {
         let appleButton = SimplifiedAuthKit.makeAuthButton(for: .apple,color: .black, adaptive: false)
         appleButton.addTarget(nil, action: #selector(appleTapped), for: .touchUpInside)
@@ -105,16 +27,19 @@ extension EmailLoginViewController
         return appleButton
     }
     
-    private static func makeGoogleButton() -> UIButton
+    internal static func makeGoogleButton() -> UIButton
     {
         let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google,color: .white, adaptive: true)
         googleButton.addTarget(nil, action: #selector(googleTapped), for: .touchUpInside)
         googleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight).isActive = true
-        googleButton.tintColor = .red
+        googleButton.layer.borderWidth = DesignSystem.Styling.LoginUI.borderWidth
+        googleButton.layer.borderColor = UIColor.black.cgColor 
+        googleButton.layer.cornerRadius = DesignSystem.Styling.LoginUI.buttonCornerRadius
+        googleButton.clipsToBounds = true
         return googleButton
     }
     
-    private static func makeOrLabel() -> UILabel
+    internal static func makeOrLabel() -> UILabel
     {
         let label = UILabel()
         label.text = DesignSystem.L10n.orseparatorKey
@@ -124,7 +49,7 @@ extension EmailLoginViewController
         return label
     }
     
-    private static func makeEmailField() -> UITextField
+    internal static func makeEmailField() -> UITextField
     {
         let emailTextView = UITextField()
         emailTextView.placeholder = DesignSystem.L10n.emailPlaceHolderKey
@@ -137,12 +62,12 @@ extension EmailLoginViewController
         emailTextView.leftViewMode = .always
         emailTextView.layer.cornerRadius = DesignSystem.Styling.LoginUI.buttonCornerRadius
         emailTextView.layer.borderWidth = DesignSystem.Styling.LoginUI.borderWidth
-        emailTextView.layer.borderColor = DesignSystem.AppColors.textPrimaryColor.cgColor
+        emailTextView.layer.borderColor = DesignSystem.AppColors.secondaryColor.cgColor
         emailTextView.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight).isActive = true
         return emailTextView
     }
     
-    private static func makeEmailErrorLabel() -> UILabel
+    internal static func makeEmailErrorLabel() -> UILabel
     {
         let label = PaddedLabel()
         label.textColor = DesignSystem.AppColors.errorColor
@@ -153,7 +78,7 @@ extension EmailLoginViewController
         return label
     }
     
-    private static func makePasswordField() -> UITextField
+    internal static func makePasswordField() -> UITextField
     {
         let tf = UITextField()
         tf.placeholder = DesignSystem.L10n.passwordPlaceholderKey
@@ -168,7 +93,7 @@ extension EmailLoginViewController
         tf.leftViewMode = .always
         tf.layer.cornerRadius = DesignSystem.Styling.LoginUI.buttonCornerRadius
         tf.layer.borderWidth = DesignSystem.Styling.LoginUI.borderWidth
-        tf.layer.borderColor = DesignSystem.AppColors.textPrimaryColor.cgColor
+        tf.layer.borderColor = DesignSystem.AppColors.secondaryColor.cgColor
         tf.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight).isActive = true
         
         attachPasswordToggle(to: tf) // adds a right view to the password TextField
@@ -176,7 +101,7 @@ extension EmailLoginViewController
         return tf
     }
     
-    private static func attachPasswordToggle(to textField: UITextField)
+    internal static func attachPasswordToggle(to textField: UITextField)
     {
         let toggleButton = UIButton(type: .system)
         toggleButton.tintColor = DesignSystem.AppColors.secondaryColor
@@ -211,7 +136,7 @@ extension EmailLoginViewController
         textField.rightViewMode = .always
     }
     
-    private static func makePasswordErrorLabel() -> UILabel
+    internal static func makePasswordErrorLabel() -> UILabel
     {
         let label = PaddedLabel()
         label.text = DesignSystem.L10n.incorrectPasswordKey
@@ -224,7 +149,7 @@ extension EmailLoginViewController
         return label
     }
     
-    private static func makeForgotPasswordButton() -> UIButton
+    internal static func makeForgotPasswordButton() -> UIButton
     {
         let button = UIButton(type: .system)
         button.addTarget(nil, action: #selector(forgotPasswordTapped), for: .touchUpInside)
@@ -235,7 +160,7 @@ extension EmailLoginViewController
         return button
     }
     
-    private static func makeLoginButton() -> UIButton
+    internal static func makeLoginButton() -> UIButton
     {
         let button = UIButton(type: .system)
         button.addTarget(nil, action: #selector(LoginButtonTapped), for: .touchUpInside)
@@ -247,12 +172,8 @@ extension EmailLoginViewController
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return button
     }
-}
-
-
-extension EmailLoginViewController
-{
-    private static func makeBottomLabel() -> UILabel
+    
+    internal static func makeBottomLabel() -> UILabel
     {
         let label = UILabel()
         label.text = DesignSystem.L10n.noAccountKey
@@ -261,7 +182,7 @@ extension EmailLoginViewController
         return label
     }
     
-    private static func makeSignUpButton() -> UIButton
+    internal static func makeSignUpButton() -> UIButton
     {
         let button = UIButton(type: .system)
         button.addTarget(nil, action: #selector(signUpButtonTapped), for: .touchUpInside)
@@ -271,9 +192,9 @@ extension EmailLoginViewController
         return button
     }
     
-    private func setupUI()
+    internal func setupUI()
     {
-        view.backgroundColor = DesignSystem.AppColors.backgroundColor
+        view.backgroundColor = DesignSystem.AppColors.whiteColor
         
         emailTextField.delegate = self
         emailTextField.returnKeyType = .next
@@ -341,9 +262,7 @@ extension EmailLoginViewController
             bottomStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             
         ])
-        
 
-        
         
         //Check Mark
         let checkmarkImageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
@@ -363,168 +282,4 @@ extension EmailLoginViewController
         self.emailCheckmarkView = checkmarkImageView
 
     }
-    
 }
-
-// MARK: - UITextFieldDelegate methods for handling Return key behavior
-extension EmailLoginViewController: UITextFieldDelegate
-{
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        if textField == emailTextField
-        {
-            // Move focus to the password text field when Return is pressed on the email field
-            passwordTextField.becomeFirstResponder()
-        }
-        else if textField == passwordTextField
-        {
-            // Trigger login validation when Return is pressed on the password field
-        }
-        return true
-    }
-}
-
-// MARK: - Actions
-extension EmailLoginViewController
-{
-    @objc func googleTapped()
-    {
-       // AuthenticationManager.shared.startGoogleSignIn(from: self)
-    }
-    
-    @objc func appleTapped()
-    {
-       // AuthenticationManager.shared.startAppleSignIn(from: self)
-    }
-    
-    @objc private func LoginButtonTapped() { didTapLogInWithEmailButton()}
-    @objc private func signUpButtonTapped() { didTapSignUp()}
-    @objc private func forgotPasswordTapped() {didTapForgotPassword()}
-    
-    //User Clicked the login Button
-    private func didTapLogInWithEmailButton()
-    {
-        print("LoginButton Tapper")
-    }
-    
-    //user taps the signup button
-    private func didTapSignUp()
-    {
-        print("SignupButton Tapper")
-    }
-    
-    //uer tapped the forgot passsword button
-    private func didTapForgotPassword()
-    {
-        print("Forgot passworf button tapped ")
-        
-    }
-}
-
-extension EmailLoginViewController
-{
-    
-    public func toggleValidationLabel(_ label: UILabel, isValid: Bool, message: String? = nil)
-    {
-        DispatchQueue.main.async //Update UI on Main Thread
-        {
-            if let message = message
-            {
-                label.text = message
-            }
-            
-            if isValid
-            {
-                // Always update immediately first
-                label.isHidden = true
-                label.text = nil
-                           
-            } else {
-                label.isHidden = false
-                label.alpha = 1.0
-                
-            }
-        }
-    }
-    
-    
-    
-    public func indicateValidationTextField(on textField: UITextField, isValid: Bool, persist: Bool = false) {
-        DispatchQueue.main.async
-        {
-            if isValid
-            {
-                textField.layer.borderColor = DesignSystem.AppColors.successColor.cgColor
-                self.emailCheckmarkView = self.toggleCheckmark(for: self.emailTextField, isValid: true )
-                
-                
-            } else
-            {
-                textField.layer.borderColor = DesignSystem.AppColors.errorColor.cgColor
-                
-                
-                if !persist
-                {
-                    let originalColor = DesignSystem.AppColors.textPrimaryColor.cgColor
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6)
-                    {
-                        textField.layer.borderColor = originalColor
-                    }
-                }
-                
-                // Inline shake
-                let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-                animation.timingFunction = CAMediaTimingFunction(name: .linear)
-                animation.duration = 0.4
-                animation.values = [-10, 10, -8, 8, -5, 5, 0]
-                textField.layer.add(animation, forKey: "shake")
-                //            }
-            }
-        }
-    }
-    
-//    private func toggleCheckmark(for checkmarkView: UIImageView?, isValid: Bool)
-//    {
-//        guard let checkmarkView = checkmarkView else { return }
-//
-//        UIView.transition(with: checkmarkView,
-//                          duration: 0.7,
-//                          options: .transitionCrossDissolve,
-//                          animations:
-//                            {
-//            checkmarkView.isHidden = !isValid
-//        })
-//    }
-    
-    private func toggleCheckmark(for textField: UITextField, isValid: Bool) -> UIImageView {
-        let checkmark = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
-        checkmark.tintColor = .systemGreen
-        checkmark.translatesAutoresizingMaskIntoConstraints = false
-        checkmark.isHidden = true
-        view.addSubview(checkmark)
-        
-        NSLayoutConstraint.activate([
-            checkmark.centerYAnchor.constraint(equalTo: textField.centerYAnchor),
-            checkmark.trailingAnchor.constraint(equalTo: textField.trailingAnchor, constant: -25),
-            checkmark.widthAnchor.constraint(equalToConstant: 20),
-            checkmark.heightAnchor.constraint(equalToConstant: 20)
-        ])
-        UIView.transition(with: checkmark,
-                                  duration: 0.7,
-                                  options: .transitionCrossDissolve,
-                                  animations:
-                                    {
-            checkmark.isHidden = !isValid
-                })
-        
-        return checkmark
-    }
-    
-    //Resets the border
-    public func resetBorder(on textField: UITextField)
-    {
-        textField.layer.borderColor  = DesignSystem.AppColors.textPrimaryColor.cgColor
-    }
-}
-
-

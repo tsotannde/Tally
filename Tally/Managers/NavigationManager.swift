@@ -5,7 +5,7 @@
 //  Created by Adebayo Sotannde on 9/14/25.
 //
 import UIKit
-import Hero
+@_exported import Hero
 
 class NavigationManager
 {
