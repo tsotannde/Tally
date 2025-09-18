@@ -191,7 +191,10 @@ extension EmailLoginViewController
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         return button
     }
-    
+}
+
+extension EmailLoginViewController
+{
     internal func setupUI()
     {
         view.backgroundColor = DesignSystem.AppColors.whiteColor

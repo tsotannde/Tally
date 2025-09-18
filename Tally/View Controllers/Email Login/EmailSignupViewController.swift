@@ -1,13 +1,27 @@
 //
-//  EmailLogin+Navigation.swift
+//  EmailSignupViewController.swift
 //  Tally
 //
 //  Created by Developer on 9/17/25.
 //
 
-//MARK: - Naviagation Controller
-extension EmailLoginViewController
+import UIKit
+import Hero
+
+class EmailSignupViewController: UIViewController
 {
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        view.backgroundColor = .blue
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+    }
+    
     // Re-enable swipe-right to dismiss (Hero disables the default pop gesture)
     internal func configureSwipeBackGesture()
     {
@@ -41,6 +55,6 @@ extension EmailLoginViewController
     // Handles custom back button press by popping the current view controller with a Hero slide-right animation via the NavigationManager.dismiss() function
     @objc private func customBackPressed()
     {
-        NavigationManager.shared.dismiss(on: navigationController, animation: .slide(direction: .right), animated: true)
+        NavigationManager.shared.dismiss(on: navigationController, animation: .zoom, animated: true)
     }
 }

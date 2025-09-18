@@ -43,63 +43,54 @@ final class EmailLoginViewController: UIViewController
     }
 }
 
-
-
-
-
-// MARK: - UITextFieldDelegate methods for handling Return key behavior
-extension EmailLoginViewController: UITextFieldDelegate
-{
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        if textField == emailTextField
-        {
-            // Move focus to the password text field when Return is pressed on the email field
-            passwordTextField.becomeFirstResponder()
-        }
-        else if textField == passwordTextField
-        {
-            // Trigger login validation when Return is pressed on the password field
-        }
-        return true
-    }
-}
-
 // MARK: - Actions
 extension EmailLoginViewController
 {
     @objc func googleTapped()
     {
-       // AuthenticationManager.shared.startGoogleSignIn(from: self)
+        SimplifiedAuthKit.signIn(with: .google, from: self)
+        { result in
+            switch result
+            {
+            case .success(_):
+                NavigationManager.shared.navigate(to: HomeViewController(),on: self.navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Sign In Failed",message: error.localizedDescription,preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     @objc func appleTapped()
     {
-       // AuthenticationManager.shared.startAppleSignIn(from: self)
+        SimplifiedAuthKit.signIn(with: .apple, from: self) { result in
+            switch result
+            {
+            case .success(_):
+                NavigationManager.shared.navigate(to: HomeViewController(),on: self.navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Sign In Failed",message: error.localizedDescription,preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+                
+            }
+        }
     }
     
-    @objc internal func LoginButtonTapped() { didTapLogInWithEmailButton()}
-    @objc internal func signUpButtonTapped() { didTapSignUp()}
-    @objc internal func forgotPasswordTapped() {didTapForgotPassword()}
-    
-    //User Clicked the login Button
-    private func didTapLogInWithEmailButton()
+    @objc internal func LoginButtonTapped()
     {
-        print("LoginButton Tapper")
+        print("Login  Tapper")
     }
-    
-    //user taps the signup button
-    private func didTapSignUp()
+    @objc internal func signUpButtonTapped()
     {
-        print("SignupButton Tapper")
+        NavigationManager.shared.navigate(to: EmailSignupViewController(), on: self.navigationController,clearStack: false, animation: DesignSystem.Animations.slideLeftTransition)
     }
-    
-    //uer tapped the forgot passsword button
-    private func didTapForgotPassword()
+    @objc internal func forgotPasswordTapped()
     {
         print("Forgot passworf button tapped ")
-        
     }
+    
 }
 
 extension EmailLoginViewController
