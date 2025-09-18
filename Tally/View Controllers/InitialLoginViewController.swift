@@ -137,12 +137,12 @@ extension InitialLoginViewController
 {
     @objc func handleSkip()
     {
-        NavigationManager.shared.navigate(to: HomeViewController(),on: navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
+       // NavigationManager.shared.navigate(to: HomeViewController(),on: navigationController,clearStack: true,animation: DesignSystem.Animations.slideLeftTransition)
     }
     
     @objc func handleEmailSignIn()
     {
-        NavigationManager.shared.navigate(to: EmailLoginViewController(), on: navigationController, clearStack: false, animation: DesignSystem.Animations.slideLeftTransition)
+        NavigationManager.shared.navigate(to: FaceIDSetupViewController(), on: navigationController, clearStack: false, animation: DesignSystem.Animations.slideLeftTransition)
     }
     
     @objc func handleGoogleSignIn()
