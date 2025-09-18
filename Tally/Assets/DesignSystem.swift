@@ -13,14 +13,14 @@ enum DesignSystem //Design System
 {
     enum AppColors 
     {
-        static let primary = UIColor(named: "Primary")!
-        static let secondary = UIColor(named: "Secondary")!
-        static let error = UIColor(named: "Error")!
-        static let success = UIColor(named: "Success")!
-        static let textPrimary = UIColor(named: "Text Primary")!
-        static let textSecondary = UIColor(named: "Text Secondary")!
-        static let background = UIColor(named: "Background")!
-        static let white = UIColor(named: "White")!
+        static let primaryColor = UIColor(named: "Primary Color")!
+        static let secondaryColor = UIColor(named: "Secondary Color")!
+        static let errorColor = UIColor(named: "Error Color")!
+        static let successColor = UIColor(named: "Success Color")!
+        static let textPrimaryColor = UIColor(named: "Text Primary Color")!
+        static let textSecondaryColor = UIColor(named: "Text Secondary Color")!
+        static let backgroundColor = UIColor(named: "Background Color")!
+        static let whiteColor = UIColor(named: "White Color")!
         
     }
     
@@ -86,6 +86,14 @@ enum DesignSystem //Design System
         static let loginWithEmailKey = String(localized: "login_with_email_text")
         static let signInWithGoogleKey =  String(localized:  "sign_in_google_text")
         static let skipKey = String(localized: "skip_text")
+        static let loginTextKey = String(localized: "log_in_text")
+        static let orseparatorKey = String(localized: "or_separator")
+        static let emailPlaceHolderKey = String(localized: "email_placeholder")
+        static let passwordPlaceholderKey = String(localized: "password_placeholder")
+        static let incorrectPasswordKey = String(localized: "error_incorrect_password")
+        static let forgotPasswordKey = String(localized:  "forgot_password_text")
+        static let noAccountKey = String(localized: "no_account_question_Text")
+        static let signupKey = String(localized: "sign_up_text")
        
     }
 }

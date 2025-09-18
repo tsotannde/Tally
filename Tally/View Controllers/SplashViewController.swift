@@ -29,14 +29,13 @@ final class SplashViewController: UIViewController
         super.viewWillAppear(animated)
         NavigationManager.shared.toggleNavigationBar(on: navigationController,animated: false, shouldShow: false)
     }
-    
 }
 //MARK: - Create the UI Helper Functions
 extension SplashViewController
 {
     private func setupUI()
     {
-        view.backgroundColor = DesignSystem.AppColors.primary
+        view.backgroundColor = DesignSystem.AppColors.primaryColor
 
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false
@@ -62,11 +61,12 @@ extension SplashViewController
 {
     private func navigateToDestination()
     {
-        DispatchQueue.main.asyncAfter(deadline: .now() + DesignSystem.SplashScreen.postLaunchDelay) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + DesignSystem.SplashScreen.postLaunchDelay)
+        { [weak self] in
+            
             guard let self = self else { return }
             
             let destination: LaunchDestination = SimplifiedAuthKit.isSignedIn() ? .home : .login
-            
             
             switch destination
             {

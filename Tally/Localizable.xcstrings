@@ -13,6 +13,50 @@
         }
       }
     },
+    "email_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email Address"
+          }
+        }
+      }
+    },
+    "error_incorrect_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect Password"
+          }
+        }
+      }
+    },
+    "forgot_password_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forgot Password ?"
+          }
+        }
+      }
+    },
+    "log_in_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in"
+          }
+        }
+      }
+    },
     "login_with_email_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24,6 +68,39 @@
         }
       }
     },
+    "no_account_question_Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don’t have an account?"
+          }
+        }
+      }
+    },
+    "or_separator" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OR"
+          }
+        }
+      }
+    },
+    "password_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
+    },
     "sign_in_google_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -31,6 +108,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign in with Google"
+          }
+        }
+      }
+    },
+    "sign_up_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Up"
           }
         }
       }
