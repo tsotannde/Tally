@@ -19,36 +19,6 @@ extension EmailLoginViewController
         return label
     }
     
-    internal  static func makeAppleButton() -> UIButton
-    {
-        let appleButton = SimplifiedAuthKit.makeAuthButton(for: .apple,color: .black, adaptive: false)
-        appleButton.addTarget(nil, action: #selector(appleTapped), for: .touchUpInside)
-        appleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight).isActive = true
-        return appleButton
-    }
-    
-    internal static func makeGoogleButton() -> UIButton
-    {
-        let googleButton = SimplifiedAuthKit.makeAuthButton(for: .google,color: .white, adaptive: true)
-        googleButton.addTarget(nil, action: #selector(googleTapped), for: .touchUpInside)
-        googleButton.heightAnchor.constraint(equalToConstant: DesignSystem.Styling.LoginUI.buttonHeight).isActive = true
-        googleButton.layer.borderWidth = DesignSystem.Styling.LoginUI.borderWidth
-        googleButton.layer.borderColor = UIColor.black.cgColor 
-        googleButton.layer.cornerRadius = DesignSystem.Styling.LoginUI.buttonCornerRadius
-        googleButton.clipsToBounds = true
-        return googleButton
-    }
-    
-    internal static func makeOrLabel() -> UILabel
-    {
-        let label = UILabel()
-        label.text = DesignSystem.L10n.orseparatorKey
-        label.textColor = DesignSystem.AppColors.textPrimaryColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textAlignment = .center
-        return label
-    }
-    
     internal static func makeEmailField() -> UITextField
     {
         let emailTextView = UITextField()
@@ -233,9 +203,9 @@ extension EmailLoginViewController
         // Main vertical stack
         let authFieldsStack = UIStackView(arrangedSubviews: [
             titleLabel,
-            appleButton,
-            googleButton,
-            orLabel,
+            //appleButton,
+            //googleButton,
+            //orLabel,
             emailTextField,
             emailErrorLabel,
             passwordTextField,

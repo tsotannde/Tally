@@ -13,9 +13,6 @@ final class EmailLoginViewController: UIViewController
 {
     //UI Components
     internal let titleLabel = makeTitleLabel()
-    internal let appleButton = makeAppleButton()
-    internal let googleButton = makeGoogleButton()
-    internal let orLabel = makeOrLabel()
     internal var emailCheckmarkView: UIImageView?
     internal let emailTextField = makeEmailField()
     internal let emailErrorLabel = makeEmailErrorLabel()

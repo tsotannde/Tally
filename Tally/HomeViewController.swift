@@ -14,6 +14,7 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         print("Home View Controller")
+        self.title = "Home"
         view.backgroundColor = .purple
 
         let signOutButton = UIButton(type: .system)

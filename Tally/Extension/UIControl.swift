@@ -14,7 +14,7 @@ extension UIControl
     {
         let originalTransform = self.transform
         
-        self.addAction(UIAction { [weak self] _ in
+        self.addAction(UIAction { [weak self] _ in 
             guard let self = self else { return }
             UIView.animate(withDuration: duration, animations:{self.transform = originalTransform.scaledBy(x: scaleFactor, y: scaleFactor)})}, for: .touchDown)
         
